@@ -1,0 +1,6 @@
+git init
+git add --all
+git remote add origin URL
+git push origin master
+git commit -m "eerw"
+git push origin master
