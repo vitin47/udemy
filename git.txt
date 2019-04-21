@@ -4,3 +4,10 @@ git remote add origin URL
 git push origin master
 git commit -m "eerw"
 git push origin master
+
+
+ATT
+
+git add --all
+GIT COMMIT -M
+GIT PUSH ORIGIN MASTER

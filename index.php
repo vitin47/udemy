@@ -10,9 +10,9 @@ require_once("config.php");
 //echo $aluno;
 
 $user = new Usuario();
-$user->loadById(17);
+$user->loadById(18);
 
-$user->update("pedttt","4324342");
+$user->delete();
 echo $user;
 
  ?>

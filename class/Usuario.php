@@ -56,7 +56,7 @@
 			$this->setDtcadastro(new DateTime($data['dtcadastro']));
 		}
 
-public function update($login,$pass){
+		public function update($login,$pass){
 			$sql = new Sql();
 			
 			$this->setDeslogin($login);
@@ -69,6 +69,22 @@ public function update($login,$pass){
 			));
 
 		}
+
+	public function delete(){
+		$sql = new Sql();
+
+		$results = $sql->query("DELETE FROM tb_usuario WHERE idusuario = :ID",array(
+			':ID'=>$this->getIdusuario()
+		));
+
+		$this->setIdusuario(0);
+		$this->setDeslogin("");
+		$this->setDessenha("");
+		$this->setDtcadastro(new DateTime);
+
+
+
+	}
 
 
 	
