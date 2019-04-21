@@ -45,16 +45,33 @@
 		));
 
 		if(isset($result[0])){
-			$row = $result[0];
-			$this->setIdusuario($row['idusuario']);
-			$this->setDeslogin($row['deslogin']);
-			$this->setDessenha($row['dessenha']);
-			$this->setDtcadastro(new DateTime($row['dtcadastro']));
+			$this->setData($result[0]);
+		}
+	}
+
+		public function setData($data){
+			$this->setIdusuario($data['idusuario']);
+			$this->setDeslogin($data['deslogin']);
+			$this->setDessenha($data['dessenha']);
+			$this->setDtcadastro(new DateTime($data['dtcadastro']));
+		}
+
+public function update($login,$pass){
+			$sql = new Sql();
+			
+			$this->setDeslogin($login);
+			$this->setDessenha($pass);
+
+			$sql->query("UPDATE tb_usuario SET deslogin = :LOGIN, dessenha = :PASS WHERE idusuario = :ID",array(
+				':LOGIN'=>$this->getDeslogin(),
+				':PASS'=>$this->getDessenha(),
+				':ID'=>$this->getIdusuario()
+			));
+
 		}
 
 
-
-	}
+	
 	public static function getList(){
 		$sql = new Sql();
 		return $sql->select("SELECT * FROM tb_usuario ORDER BY idusuario");
@@ -81,6 +98,16 @@
 			}else{
 				return $result;
 			}
+		}
+
+		public static function insert($login,$senha){
+			$sql = new Sql();
+			$sql->query("INSERT INTO tb_usuario(deslogin,dessenha)VALUES(:LOGIN,:PASS)", array(
+				':LOGIN'=>$login,
+				':PASS'=>$senha
+			));
+
+			return $sql->query("SELECT * FROM tb_usuario WHERE idusuario =  LAST_INSERT_ID()");
 		}
 
 	

@@ -5,9 +5,14 @@ require_once("config.php");
 //$user = new Usuario();
 //$user -> loadById(10);
 //$user = Usuario::getList();
-$procura = Usuario::login("pedro","123");
+//$aluno = new Usuario("teste2","321");
+//$aluno->insert();
+//echo $aluno;
 
+$user = new Usuario();
+$user->loadById(17);
 
-echo json_encode($procura);
+$user->update("pedttt","4324342");
+echo $user;
 
  ?>
